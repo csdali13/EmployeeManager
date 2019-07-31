@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block content %} 
+    <div class="container department">
+
+    <h4> Employees in {{ department.name }} </h4>
+    <ol>
+        {% for emp in department_employees %}
+            <li type="1">
+                {{ emp.name }}
+            </li>
+        {% endfor %}
+    </ol>
+ </div>
+{% endblock content %}

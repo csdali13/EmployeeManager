@@ -1,0 +1,39 @@
+
+{% extends 'layout.html' %}
+
+{% block content %} 
+
+<h4 class="form">Enter the details of the new employee</h4>
+<div class="container form">
+    <hr>
+    <br>
+    <form action = "/add/addemployeeform" method ="post">
+       <div class ="form-group">
+            {{form.name.label}}
+            {{form.name}}
+       </div>
+       <div class ="form-group">
+            {{form.designation.label}}
+            {{form.designation}}
+       </div>
+       <div class ="form-group">
+            {{form.address.label}}
+            {{form.address}}
+       </div>
+       <div class ="form-group">
+            {{form.phone.label}}
+            {{form.phone}}
+       </div>
+       <div class ="form-group">
+            {{form.department_id.label}}
+            {{form.department_id}}
+       </div>
+       <div class ="form-group">
+            {{form.submit(class='btn btn-primary')}}
+        </div>
+
+    </form>
+</div>
+
+{% endblock content %}
+
