@@ -3,33 +3,19 @@
 
 {% block content %}
 
-{% include "addAndSearch.html" %}
-
-<!--{% include "deleteConfirm.html" %}-->
-
+{% include "buttonGroup.html" %}
 
 
 <div id="listDiv" class="container employees">
         <div class="row">
     {% for emp in emps %}
     <div class="col-md-4">
-   <!-- <img src= "https://thumbs.dreamstime.com/z/vector-illustration-flat-line-male-icon-graphic-design-concept-man-profile-use-web-project-applications-blue-outline-83045613.jpg" alt="employee profile pic" height="200" width="190" class="img-rounded">-->
         <img src= "https://www.ibts.org/wp-content/uploads/2017/08/iStock-476085198.jpg" alt="employee profile pic" height="100" width="90" class="img-rounded">
-        <h4> Name: {{ emp.name }} 
-        <div v-bind:employeeID = {{ emp.id }}></div>
-        <button @click="deleteConfirm()" class="btn"><i class="fa fa-trash"></i></button>
-
-
-<!--<form method="POST" action="{{url_for('emp_record_blueprint.delete_employee',emp_id=emp.id)}}" accept-charset="UTF-8" style="display:inline">
-    <button class="btn btn-xs btn-danger" type="button" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="Are you sure you want to delete this user ?">
-        <i class="glyphicon glyphicon-trash"></i> Delete
-    </button>
-</form>-->
-        
-        
-        </h4>
-        
-        <p> Employee ID: {{ emp.id }} </p>
+        <!--<div> [[employeeID = {{emp.id}}]]  </div>-->
+        <h4> Name: {{ emp.name }} </h4>
+        <span class="label label-info"><a href="{{url_for('emp_record_blueprint.delete_employee', employee_id = emp.id)}}" style="color:red">Delete</a></span>       
+        <p> Employee ID: {{ emp.id }}
+        </p>
         <p> Address: {{ emp.address }} </p>
         <p> Phone: {{ emp.phone }} </p>
         <p> Designation: {{ emp.designation  }} </p>
@@ -38,29 +24,34 @@
         </div>
     {% endfor %}
     </div>
-    </div>
-    
+    </div>   
 
 {% endblock content %}
-
- {% block vuescript %}
-
+<!-- {% block vuescript %}
      <script>
-        new Vue({
+        var vm = new Vue({
             el: '#listDiv',
             delimiters: ['[[', ']]'],
             data: {
                 employeeID: 0
 
             },
+            mounted: function() {
+                var childSpanClassAttr = this.$refs.someName.getAttribute('class');
+            },
+
             methods : {
-                deleteConfirm: function(){
+                deleteConfirm: function(event){
+                    string = event.path[1]
+                    print(string.index('button'))
+                    console.log(event.path[1])
                     if(confirm('Do you really want to delete this employee of id" + this.employeeID +" permanently?!!')){
-                        alert(this.employeeID)
+
                     }
 
                 }
             }
         });
+        Vue.config.devtools = true;
      </script>
-  {% endblock vuescript %}
+  {% endblock vuescript %}-->

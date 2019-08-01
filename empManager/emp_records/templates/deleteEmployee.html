@@ -1,6 +1,35 @@
-{% block deleteConfirm %}
 
-<!-- Modal Dialog -->
+
+{% extends 'layout.html' %}
+
+{% block content %} 
+  <div class =  "container">
+    <h4 style="margin-left:45px"> Delete the employee? </h4>
+    <hr>
+      <p style = "margin-left:45px">
+        Employee Name : {{emp.name}}
+        <br><br>
+        Employee ID : {{emp.id}}
+        <br><br>
+        Department : {{emp.department_id}}
+        <br><br>
+      <p>
+    <br>
+    <form action="{{ url_for('emp_record_blueprint.delete_employee', employee_id = employee_id) }}" method = "POST" style="margin-left:45px">
+      <button type="submit" class="btn btn-sm btn-primary"> Delete </button>
+      <span class="btn btn-sm btn-primary"><a href="{{url_for('emp_record_blueprint.emp_list')}}" style="color:red">Cancel</a></span>       
+
+    </form>
+  </div>
+
+{% endblock content %}
+
+
+
+
+<!-- {% block deleteConfirm %}
+
+<!-- Modal Dialog 
 <div class="modal" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="false">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -20,7 +49,7 @@
 </div>
 
 
-<!-- Dialog show event handler -->
+<!-- Dialog show event handler 
 <script type="text/javascript">
   $('#confirmDelete').on('show.bs.modal', function (e) {
       $message = $(e.relatedTarget).attr('data-message');
@@ -33,11 +62,12 @@
       $(this).find('.modal-footer #confirm').data('form', form);
   });
 
-  <!-- Form confirm (yes/ok) handler, submits form -->
+  <!-- Form confirm (yes/ok) handler, submits form 
   $('#confirmDelete').find('.modal-footer #confirm').on('click', function(){
       $(this).data('form').submit();
   });
 </script>
 
 
-{% endblock deleteConfirm %}
+{% endblock deleteConfirm %} 
+-->

@@ -46,3 +46,31 @@ class Employee(empManager_db.Model):
         empManager_db.session.commit()
         print('db committed', file=sys.stderr)
 
+    @classmethod
+    def delete_employee(cls, employee_id):
+        # print('inside the create_employee in models.py', file=sys.stderr)
+        emp = Employee.query.get(employee_id)
+        empManager_db.session.delete(emp)
+        empManager_db.session.commit()
+        print('db committed', file=sys.stderr)
+
+
+    @classmethod
+    def search_employee(cls, searchName, searchDesignation, searchPhone):
+        query = empManager_db.session.query(Employee)
+
+        if searchName:
+            query = query.filter(Employee.name == searchName)
+        
+        if searchDesignation:
+            query = query.filter(Employee.designation == searchDesignation)
+        
+        if searchPhone:
+            query = query.filter(Employee.phone == searchPhone)
+
+        searchResult = query.all()
+
+        return searchResult
+
+
+
